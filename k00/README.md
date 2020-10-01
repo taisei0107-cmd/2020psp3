@@ -1,5 +1,5 @@
 # 課題0 レポート
-学籍番号　氏名
+bb35319025 新開　大生
 
 
 ## 課題
@@ -7,13 +7,13 @@
 
 
 ## ソースコードの説明
-l.5 標準出力に"Hello World"と出力する。
+l.5 標準出力に"Hello World Test"と出力する。
 
 
 ## 出力結果
 
 > ./k00
-> Hello World
+> Hello World Test
 
 ## 修正履歴
 
