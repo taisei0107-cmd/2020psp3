@@ -75,8 +75,11 @@ void PrintList(Node* pTop)
 
 Node* InsertNewNode(City newCity, Node* pNext)
 {
-    //  ここを実装する
+    Node* pNode = malloc(sizeof(Node));
+    pNode->city=newCity;
+    pNode->pNext=pNext;
 
+    return pNode;
 }
 
 #ifdef CHALLENGE1
@@ -99,8 +102,21 @@ int SearchCityByName(Node* pList, char* cityName, City* pCity)
 
 int SearchCityByID(Node* pList, int ID, City* pCity)
 {
-    // ここを実装する
+    Node* pNode;
+    pNode=pList;
+    int n=1;
 
+    while(pNode!=NULL) {
+        if(pNode->city.id!=ID) {
+            pNode=pNode->pNext;
+        } else if(pNode->city.id=ID) {
+            *pCity=pNode->city;
+            return n;
+        }
+        n++;
+    }
+
+    return -1;
 }
 
 int main(void)
