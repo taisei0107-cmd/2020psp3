@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #define DEBUG
 
@@ -9,11 +10,13 @@ char StrKey[] = "wind";
 
 char* ForceSearch(char text[], char key[])
 {
-    int pos=0,start,key_len=4;
-    for(start=0;start<48;start++) {
+    int key_len = strlen(key);
+    int text_len = strlen(text);
+    int pos=0,start;
+    for(start=0;start<text_len;start++) {
         for(pos=0;pos<key_len;pos++) {
             if(text[start+pos] == key[pos]) {
-                if(pos == 3) {
+                if(pos == key_len - 1) {
                     return &text[start];
                 } else {
                     continue;
@@ -28,16 +31,22 @@ char* ForceSearch(char text[], char key[])
 
 char* BMSearch(char text[], char key[])
 {
+    int i;
+    int text_len = strlen(text);
+    int key_len = strlen(key);
+    int index = key_len-1;
+    int key_index,k;
     int table[256];
-    int index=3,key_index,i;
     for(i=0;i<ALPHABET_LEN;i++) {
-        table[i]=4;
+        table[i]=key_len;
     }
-    table['d']=0,table['n']=1,table['i']=2,table['w']=3;
+    for(i=0;i<key_len;i++) {
+        table[key[i]] = index - i;
+    }
 
-    while(index<48) {
-        
-        for(key_index=3;key_index>-1;key_index=key_index-1) {
+    while(index<text_len) {
+        k = index;
+        for(key_index=key_len-1;key_index>-1;key_index=key_index-1) {
             if(text[index]==key[key_index]) {
                 if(key_index == 0) {
                     return &text[index];
@@ -48,10 +57,10 @@ char* BMSearch(char text[], char key[])
                 break;
             }
         }
-        if(index < index + table[text[index]]) {
-        index = index + table[text[index]];
+        if(k >= k + table[text[k]]) {
+        index = k + 1;
         } else {
-            index = index + 1;
+            index = k + table[text[k]];
         }
     }
     return NULL;
