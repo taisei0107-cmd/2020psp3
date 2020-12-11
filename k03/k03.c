@@ -57,10 +57,10 @@ char* BMSearch(char text[], char key[])
                 break;
             }
         }
-        if(k >= k + table[text[k]]) {
+        if(k >= index + table[text[k]]) {
         index = k + 1;
         } else {
-            index = k + table[text[k]];
+            index = index + table[text[k]];
         }
     }
     return NULL;
