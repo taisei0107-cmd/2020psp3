@@ -132,8 +132,8 @@ void QuickSort(City arrayCity[], int left, int right)
         }
 
         tmp = arrayCity[left];
-        arrayCity[left] = arrayCity[i];
-        arrayCity[i] = tmp;
+        arrayCity[left] = arrayCity[j];
+        arrayCity[j] = tmp;
 
         QuickSort(arrayCity, left, j-1);
         QuickSort(arrayCity, j+1, right);
