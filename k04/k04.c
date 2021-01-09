@@ -138,7 +138,7 @@ void QuickSort(City arrayCity[], int left, int right)
         QuickSort(arrayCity, left, j-1);
         QuickSort(arrayCity, j+1, right);
     } else {
-        return 0;
+        return ;
     }
 }
 
